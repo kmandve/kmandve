@@ -2,153 +2,343 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kautik Mandve | Portfolio</title>
+  <meta name="description" content="Kautik Mandve — aspiring engineering student focused on robotics, AI, and building real-world projects." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    :root {
-      --bg: #0d0d0d;
-      --text: #e6e6e6;
-      --accent: #3b82f6;
-      --card: #1a1a1a;
+    :root{
+      /* Clean, sleek dark with subtle lavender accent (not blue/black) */
+      --bg: #0b0b10;          /* near-black graphite */
+      --surface: #15151c;     /* card/background surface */
+      --text: #e8e8ec;        /* primary text */
+      --muted: #a6a6b2;       /* secondary text */
+      --accent: #a78bfa;      /* soft lavender */
+      --accent-2: #c4b5fd;    /* lighter accent for hovers */
+      --border: #242432;      /* subtle borders */
+      --maxw: 1100px;         /* readable line length */
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --speed: 240ms;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.65;
     }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+    /* ======= Header / Nav ======= */
+    .appbar{
+      position:sticky; top:0; z-index:1000;
+      backdrop-filter: saturate(140%) blur(10px);
+      background: rgba(11,11,16,0.70);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      max-width:var(--maxw);
+      margin:0 auto; padding:14px 20px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .brand{ display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:0.2px; }
+    .brand .dot{ width:10px; height:10px; border-radius:50%; background:var(--accent); box-shadow:0 0 20px rgba(167,139,250,0.6); }
+    .brand a{ color:var(--text); text-decoration:none; }
+
+    .links{ display:flex; gap:18px; align-items:center; }
+    .links a{
+      color:var(--muted); text-decoration:none; font-weight:600; padding:8px 10px; border-radius:10px;
+      transition:color var(--speed), background var(--speed);
+    }
+    .links a:hover{ color:var(--text); background:#111119; }
+    .links a.active{ color:var(--accent); }
+
+    .nav-toggle{ display:none; background:none; border:1px solid var(--border); color:var(--text); padding:8px 10px; border-radius:10px; }
+
+    /* ======= Sections ======= */
+    main{ max-width:var(--maxw); margin:0 auto; padding: 24px 20px 80px; }
+    section{ padding:64px 0; border-bottom:1px solid var(--border); scroll-margin-top:84px; }
+    section:last-of-type{ border-bottom:0; }
+    h2{ font-size:1.8rem; letter-spacing:0.2px; margin:0 0 18px; font-weight:800; }
+    .eyebrow{ color:var(--accent); font-weight:700; font-size:0.9rem; letter-spacing:0.12em; text-transform:uppercase; }
+    p{ color:var(--muted); margin: 0 0 14px; }
+
+    .hero{ display:grid; grid-template-columns: 1fr; gap:16px; padding-top:28px; }
+    .hero h1{ font-size:2.2rem; margin:0; letter-spacing:0.3px; }
+    .hero .subtitle{ color:var(--muted); font-weight:600; }
+    .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; }
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      background:var(--accent); color:#121214; border:none; padding:10px 16px; border-radius:12px; font-weight:800; text-decoration:none;
+      box-shadow: var(--shadow);
+      transition: transform var(--speed), background var(--speed);
+    }
+    .btn:hover{ transform: translateY(-2px); background:var(--accent-2); }
+    .btn-outline{ background:transparent; color:var(--text); border:1px solid var(--border); box-shadow:none; }
+    .btn-outline:hover{ border-color:var(--accent); color:var(--accent); }
+
+    /* ======= Projects ======= */
+    .grid{ display:grid; gap:18px; }
+    .projects .grid{ grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); }
+    .card{
+      background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:18px; box-shadow: var(--shadow);
+      transition: transform var(--speed), border-color var(--speed);
+    }
+    .card:hover{ transform: translateY(-6px); border-color: var(--accent); }
+    .card h3{ margin:0 0 8px; font-size:1.2rem; }
+    .meta{ display:flex; gap:10px; flex-wrap:wrap; font-size:0.9rem; color:var(--muted); }
+    .tag{ font-size:0.8rem; padding:2px 8px; border:1px solid var(--border); border-radius:999px; color:var(--muted); }
+
+    /* ======= Skills ======= */
+    .cols{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:18px; }
+    .list{ list-style:none; padding:0; margin:0; }
+    .list li{ padding:6px 0; border-bottom:1px dashed #222233; }
+    .list li:last-child{ border-bottom:0; }
+
+    /* ======= Education / Achievements ======= */
+    .edu h3{ margin:0 0 6px; }
+    .edu .small{ color:var(--muted); font-size:0.95rem; }
+
+    /* ======= Contact ======= */
+    .contact .stack{ display:grid; gap:10px; }
+    .ico{ width:22px; text-align:center; color:var(--accent); }
+    .line{ display:flex; align-items:center; gap:10px; color:var(--muted); }
+    .line a{ color:var(--text); text-decoration:none; border-bottom:1px dotted transparent; transition:border-color var(--speed), color var(--speed); }
+    .line a:hover{ color:var(--accent); border-color:var(--accent); }
+
+    /* ======= Reveal Animations ======= */
+    .reveal{ opacity:0; transform: translateY(12px); transition: opacity 420ms ease, transform 420ms ease; }
+    .reveal.in{ opacity:1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto }
+      .reveal{ transition:none; opacity:1; transform:none }
+      .card:hover{ transform:none }
+      .btn:hover{ transform:none }
     }
 
-    header {
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-
-    header h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    header p {
-      font-size: 1rem;
-      color: #aaa;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 1.2rem;
-      padding: 1rem;
-      background: #111;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    nav a:hover {
-      color: var(--accent);
-    }
-
-    section {
-      max-width: 900px;
-      margin: auto;
-      padding: 3rem 1.5rem;
-    }
-
-    h2 {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-      border-bottom: 2px solid var(--accent);
-      display: inline-block;
-      padding-bottom: 0.3rem;
-    }
-
-    p, li {
-      font-size: 1rem;
-    }
-
-    .resume-btn {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.7rem 1.5rem;
-      border: none;
-      border-radius: 6px;
-      background: var(--accent);
-      color: white;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .resume-btn:hover {
-      background: #2563eb;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      background: #111;
-      font-size: 0.9rem;
-      color: #777;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.7rem;
-      }
-
-      section {
-        padding: 2rem 1rem;
-      }
+    /* ======= Responsive ======= */
+    @media (max-width: 880px){
+      .nav{ padding:12px 16px; }
+      .links{ display:none; }
+      .links.open{ display:flex; position:fixed; top:58px; left:0; right:0; background:rgba(11,11,16,0.98); padding:14px 16px; border-bottom:1px solid var(--border); }
+      .nav-toggle{ display:inline-flex; }
+      .hero h1{ font-size:1.9rem; }
+      section{ padding:52px 0; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Kautik Mandve</h1>
-    <p>Student | Aspiring Engineer | Creator</p>
-  </header>
+  <!-- App Bar -->
+  <div class="appbar">
+    <div class="nav">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <a href="#top" aria-label="Homepage">Kautik Mandve</a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.links').classList.toggle('open')">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <main id="top">
+    <!-- Hero / About -->
+    <section id="about">
+      <div class="reveal">
+        <div class="eyebrow">Aspiring Engineering Student</div>
+        <div class="hero">
+          <h1>Hi, I’m Kautik — I build practical tech that blends <span style="color:var(--accent)">AI</span>, <span style="color:var(--accent)">robotics</span>, and solid engineering.</h1>
+          <p class="subtitle">I like turning ideas into working systems: AI-powered recycling, precision robots, and tools that solve real problems. Strong math/science foundation; always shipping, always learning.</p>
+          <div class="cta-row">
+            <a class="btn" href="https://docs.google.com/document/d/14ZjuyaOai3UmUq2s4aL_XeG9Uep2i1XSVxAXN8A2QNo/edit?tab=t.0" target="_blank" rel="noopener" aria-label="View resume">
+              <i class="fa-solid fa-file-lines"></i> Resume
+            </a>
+            <a class="btn btn-outline" href="#projects" aria-label="Jump to projects">
+              <i class="fa-solid fa-rocket"></i> Projects
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      I’m Kautik, a student passionate about engineering, problem-solving, and building real-world projects that have impact. I enjoy experimenting with technology, creating solutions, and continuously learning new skills.
-    </p>
-    <a href="resume.pdf" target="_blank"><button class="resume-btn">View Resume</button></a>
-  </section>
+    <!-- Projects -->
+    <section id="projects" class="projects">
+      <h2 class="reveal">Projects</h2>
+      <div class="grid">
+        <article class="card reveal">
+          <h3>EcoSort</h3>
+          <p>An AI-driven smart can that classifies items and auto-sorts recycling vs. trash in real time.</p>
+          <ul class="list" style="margin-top:6px">
+            <li>Sorted ~200 items during live testing; <strong>$400 prize</strong> at VHack.</li>
+            <li>Built with image detection/classification; designed for accuracy and quick throughput.</li>
+          </ul>
+          <div class="meta" style="margin-top:8px">
+            <span class="tag">Computer Vision</span>
+            <span class="tag">Edge AI</span>
+            <span class="tag">Prototyping</span>
+          </div>
+        </article>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <p>
-      Coming soon: A showcase of my work, including robotics, coding projects, and other technical builds.
-    </p>
-  </section>
+        <article class="card reveal">
+          <h3>Romi Robot</h3>
+          <p>Encoder- and stepper-driven robot that follows pre-coded paths with repeatable precision.</p>
+          <ul class="list" style="margin-top:6px">
+            <li><strong>2nd place</strong> at Illinois State Science Olympiad (precision motion challenge).</li>
+            <li>Time/encoder-based motion planning with tuned control for consistency.</li>
+          </ul>
+          <div class="meta" style="margin-top:8px">
+            <span class="tag">Embedded</span>
+            <span class="tag">Motion Control</span>
+            <span class="tag">Robotics</span>
+          </div>
+        </article>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Feel free to reach out to me at:</p>
-    <p><strong>Email:</strong> kautik@example.com</p>
-  </section>
+        <article class="card reveal">
+          <h3>FreshTrack</h3>
+          <p>Pantry tracker that keeps inventory and suggests recipes from what you already have.</p>
+          <ul class="list" style="margin-top:6px">
+            <li>Scored highly in team competitions for practical utility and UX.</li>
+            <li>Recipe engine maps ingredients to meal ideas to reduce waste.</li>
+          </ul>
+          <div class="meta" style="margin-top:8px">
+            <span class="tag">Web App</span>
+            <span class="tag">Product Design</span>
+            <span class="tag">UX</span>
+          </div>
+        </article>
+      </div>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 Kautik Mandve. All rights reserved.</p>
+    <!-- Skills -->
+    <section id="skills">
+      <h2 class="reveal">Skills</h2>
+      <div class="cols">
+        <div class="card reveal">
+          <h3>Programming</h3>
+          <ul class="list">
+            <li>Python, Java, C++</li>
+            <li>JavaScript, HTML/CSS</li>
+            <li>Git & GitHub</li>
+            <li>VS Code</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3>Hardware</h3>
+          <ul class="list">
+            <li>Arduino & Raspberry Pi</li>
+            <li>Circuit Design</li>
+            <li>Sensor Integration w/ Microcontrollers</li>
+            <li>Prototyping</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3>CAD & Making</h3>
+          <ul class="list">
+            <li>Fusion 360 & Onshape</li>
+            <li>3D Printing</li>
+            <li>Rapid Iteration</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3>Other</h3>
+          <ul class="list">
+            <li>Block Coding</li>
+            <li>Team Leadership</li>
+            <li>Presentation & Pitching</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+      <h2 class="reveal">Experience</h2>
+      <article class="card reveal">
+        <h3>Vernon Hills High School — CS Club Leadership</h3>
+        <p class="small">Co-President of Business & VP roles • Led events, guided technical projects, and supported peers in competitions.</p>
+      </article>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="edu">
+      <h2 class="reveal">Education</h2>
+      <div class="grid">
+        <article class="card reveal">
+          <h3>Vernon Hills High School</h3>
+          <p class="small">Class of 2027</p>
+          <p>AP Calculus BC, AP Computer Science A, AP Physics I & II, AP Chemistry — all scored 5. Currently dual-enrolled in Calculus 3 and Advanced Topics.</p>
+        </article>
+        <article class="card reveal">
+          <h3>College of Lake County — Southlake Campus</h3>
+          <p class="small">Summer 2025</p>
+          <p>Ordinary Differential Equations as a sophomore; final grade: <strong>101%</strong>.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements">
+      <h2 class="reveal">Achievements</h2>
+      <div class="grid">
+        <div class="card reveal"><strong>AP Scholar with Distinction</strong></div>
+        <div class="card reveal"><strong>2nd Place — Illinois State Science Olympiad</strong></div>
+        <div class="card reveal"><strong>$400 Prize — VHack (EcoSort)</strong></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+      <h2 class="reveal">Contact</h2>
+      <div class="card reveal">
+        <div class="stack">
+          <div class="line"><span class="ico"><i class="fa-solid fa-envelope"></i></span> <a href="mailto:kautikmandve@gmail.com">kautikmandve@gmail.com</a></div>
+          <div class="line"><span class="ico"><i class="fa-brands fa-linkedin"></i></span> <a href="https://www.linkedin.com/in/kautik-mandve-8779b62b7/" target="_blank" rel="noopener">LinkedIn</a></div>
+          <div class="line"><span class="ico"><i class="fa-solid fa-phone"></i></span> <a href="tel:+12247789009">+1 (224) 778‑9009</a></div>
+          <div class="line"><span class="ico"><i class="fa-solid fa-file-lines"></i></span> <a href="https://docs.google.com/document/d/14ZjuyaOai3UmUq2s4aL_XeG9Uep2i1XSVxAXN8A2QNo/edit?tab=t.0" target="_blank" rel="noopener">View Resume</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="border-top:1px solid var(--border);">
+    <div style="max-width:var(--maxw); margin:0 auto; padding:22px 20px; color:var(--muted); text-align:center;">
+      © 2025 Kautik Mandve — Built for GitHub Pages
+    </div>
   </footer>
+
+  <script>
+    // IntersectionObserver for reveal animations
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    },{ threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+    // Highlight active nav link on scroll (simple)
+    const sections = [...document.querySelectorAll('main section')];
+    const links = [...document.querySelectorAll('.links a')];
+    const setActive = () => {
+      const y = window.scrollY + 100;
+      let id = sections[0].id;
+      for(const s of sections){ if(y >= s.offsetTop) id = s.id; }
+      links.forEach(a=> a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    };
+    window.addEventListener('scroll', setActive, { passive:true });
+    window.addEventListener('load', setActive);
+  </script>
 </body>
 </html>
