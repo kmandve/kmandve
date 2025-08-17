@@ -1,248 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kautik Mandve | Aspiring Engineering Student</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kautik Mandve | Portfolio</title>
   <style>
     :root {
-      --bg: #0b0c10;
-      --card-bg: #1f2833;
-      --text: #ffffff;
-      --muted: #c5c6c7;
-      --accent: #45a29e;
-      --accent-hover: #66fcf1;
-      --transition: 0.3s ease;
-      --max-width: 1100px;
+      --bg: #0d0d0d;
+      --text: #e6e6e6;
+      --accent: #3b82f6;
+      --card: #1a1a1a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      scroll-behavior: smooth;
     }
 
     header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(11, 12, 16, 0.9);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      padding: 15px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      text-align: center;
+      padding: 2rem 1rem;
     }
 
     header h1 {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--accent);
-      margin: 0;
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1rem;
+      color: #aaa;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      padding: 1rem;
+      background: #111;
+      flex-wrap: wrap;
     }
 
     nav a {
-      margin: 0 15px;
-      text-decoration: none;
       color: var(--text);
-      font-weight: 600;
-      position: relative;
-      transition: color var(--transition);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
     }
 
-    nav a::after {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px;
-      left: 0;
-      background: var(--accent);
-      transition: width var(--transition);
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    main {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 100px 20px 40px;
+    nav a:hover {
+      color: var(--accent);
     }
 
     section {
-      margin-bottom: 100px;
-      animation: fadeInUp 1s ease;
+      max-width: 900px;
+      margin: auto;
+      padding: 3rem 1.5rem;
     }
 
     h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: var(--accent);
-      font-weight: 800;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
       border-bottom: 2px solid var(--accent);
       display: inline-block;
-      padding-bottom: 5px;
+      padding-bottom: 0.3rem;
     }
 
     p, li {
-      color: var(--muted);
-      font-size: 1.05rem;
-    }
-
-    .project, .edu-card, .achievements ul li {
-      background: var(--card-bg);
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      transition: transform var(--transition);
-    }
-
-    .project:hover, .edu-card:hover, .achievements ul li:hover {
-      transform: translateY(-5px);
-    }
-
-    .skills ul, .achievements ul, .contact ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .skills li, .achievements li, .contact li {
-      margin-bottom: 10px;
-    }
-
-    .contact a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: color var(--transition);
-    }
-
-    .contact a:hover {
-      color: var(--accent-hover);
+      font-size: 1rem;
     }
 
     .resume-btn {
       display: inline-block;
-      margin-top: 10px;
-      padding: 10px 20px;
-      background: var(--accent);
-      color: #000;
+      margin-top: 1.5rem;
+      padding: 0.7rem 1.5rem;
+      border: none;
       border-radius: 6px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background var(--transition);
+      background: var(--accent);
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
     }
 
     .resume-btn:hover {
-      background: var(--accent-hover);
+      background: #2563eb;
     }
 
     footer {
       text-align: center;
-      padding: 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      background: #111;
       font-size: 0.9rem;
-      color: var(--muted);
+      color: #777;
     }
 
-    @keyframes fadeInUp {
-      from {opacity: 0; transform: translateY(30px);}
-      to {opacity: 1; transform: translateY(0);}
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.7rem;
+      }
+
+      section {
+        padding: 2rem 1rem;
+      }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Kautik Mandve</h1>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#education">Education</a>
-      <a href="#achievements">Achievements</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <p>Student | Aspiring Engineer | Creator</p>
   </header>
 
-  <main>
-    <section id="about">
-      <h2>About Me</h2>
-      <p>Hi, I’m <strong>Kautik Mandve</strong>, an aspiring engineering student passionate about robotics, AI, and solving complex problems through technology. I build projects that merge hardware and software to create practical solutions, from AI-powered recycling systems to precision robotics. With strong foundations in advanced mathematics and science, I’m always pushing myself to learn and innovate further.</p>
-    </section>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="project">
-        <h3>EcoSort</h3>
-        <p>An AI-powered trash can that automatically classifies and sorts recyclables from waste. <strong>Won $400 at VHack Hackathon</strong> and successfully sorted over 200 items. Future enhancements are in development.</p>
-      </div>
-      <div class="project">
-        <h3>Romi Robot</h3>
-        <p>A precision robot built with encoders and stepper motors to follow pre-coded paths. Earned <strong>2nd place at the Illinois State Science Olympiad</strong> for demonstrating accuracy in motion planning and execution.</p>
-      </div>
-      <div class="project">
-        <h3>FreshTrack</h3>
-        <p>A smart pantry management app that tracks food inventory and suggests recipes based on available ingredients. Scored highly for innovation and practicality in competition pitches.</p>
-      </div>
-    </section>
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I’m Kautik, a student passionate about engineering, problem-solving, and building real-world projects that have impact. I enjoy experimenting with technology, creating solutions, and continuously learning new skills.
+    </p>
+    <a href="resume.pdf" target="_blank"><button class="resume-btn">View Resume</button></a>
+  </section>
 
-    <section id="skills" class="skills">
-      <h2>Skills</h2>
-      <ul>
-        <li>Python, Java, C++, JavaScript, HTML/CSS</li>
-        <li>Arduino, Raspberry Pi, Circuit Design, Sensor Integration</li>
-        <li>Fusion 360, Onshape, 3D Printing, Prototyping</li>
-        <li>Git/GitHub, VS Code, Block Coding</li>
-      </ul>
-    </section>
+  <section id="projects">
+    <h2>Projects</h2>
+    <p>
+      Coming soon: A showcase of my work, including robotics, coding projects, and other technical builds.
+    </p>
+  </section>
 
-    <section id="experience">
-      <h2>Experience</h2>
-      <p>Co-President of Business and VP in Computer Science Club at Vernon Hills High School. Led initiatives, organized events, and guided peers in technical projects and competitions.</p>
-    </section>
-
-    <section id="education">
-      <h2>Education</h2>
-      <div class="edu-card">
-        <h3>Vernon Hills High School (Class of 2027)</h3>
-        <p>Completed AP Calculus BC, AP Computer Science A, AP Physics I & II, AP Chemistry — all with top scores (5). Awarded <strong>AP Scholar with Distinction</strong>. Currently dual-enrolled in Calculus 3 and Advanced Topics.</p>
-      </div>
-      <div class="edu-card">
-        <h3>College of Lake County – Southlake Campus (Summer 2025)</h3>
-        <p>Completed Ordinary Differential Equations as a sophomore, achieving a <strong>101% final grade</strong>.</p>
-      </div>
-    </section>
-
-    <section id="achievements" class="achievements">
-      <h2>Achievements</h2>
-      <ul>
-        <li>AP Scholar with Distinction</li>
-        <li>2nd Place – Illinois State Science Olympiad</li>
-        <li>VHack Hackathon – $400 Prize (EcoSort)</li>
-      </ul>
-    </section>
-
-    <section id="contact" class="contact">
-      <h2>Contact</h2>
-      <ul>
-        <li><i class="fa-solid fa-envelope"></i> <a href="mailto:kautikmandve@gmail.com">kautikmandve@gmail.com</a></li>
-        <li><i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/kautik-mandve-8779b62b7/" target="_blank">LinkedIn</a></li>
-        <li><i class="fa-solid fa-phone"></i> +1 (224) 778-9009</li>
-        <li><i class="fa-solid fa-file"></i> <a class="resume-btn" href="https://docs.google.com/document/d/14ZjuyaOai3UmUq2s4aL_XeG9Uep2i1XSVxAXN8A2QNo/edit?tab=t.0" target="_blank">View Resume</a></li>
-      </ul>
-    </section>
-  </main>
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Feel free to reach out to me at:</p>
+    <p><strong>Email:</strong> kautik@example.com</p>
+  </section>
 
   <footer>
-    <p>&copy; 2025 Kautik Mandve. Built with ❤️ and hosted on GitHub Pages.</p>
+    <p>&copy; 2025 Kautik Mandve. All rights reserved.</p>
   </footer>
 </body>
 </html>
