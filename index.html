@@ -4,113 +4,152 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kautik Mandve | Aspiring Engineering Student</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
-      --bg-dark: #0d0d0d;
-      --bg-light: #f5f5f5;
-      --text-dark: #f5f5f5;
-      --text-light: #0d0d0d;
-      --accent: #4da6ff;
+      --bg: #0b0c10;
+      --card-bg: #1f2833;
+      --text: #ffffff;
+      --muted: #c5c6c7;
+      --accent: #45a29e;
+      --accent-hover: #66fcf1;
       --transition: 0.3s ease;
+      --max-width: 1100px;
     }
 
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: var(--bg-dark);
-      color: var(--text-dark);
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
-      transition: background var(--transition), color var(--transition);
       scroll-behavior: smooth;
-    }
-
-    body.light {
-      background: var(--bg-light);
-      color: var(--text-light);
     }
 
     header {
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(11, 12, 16, 0.9);
       backdrop-filter: blur(10px);
       z-index: 1000;
-      padding: 10px 20px;
+      padding: 15px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     header h1 {
-      margin: 0;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+      font-weight: 800;
       color: var(--accent);
+      margin: 0;
     }
 
     nav a {
-      margin: 0 10px;
+      margin: 0 15px;
       text-decoration: none;
-      color: inherit;
+      color: var(--text);
+      font-weight: 600;
+      position: relative;
       transition: color var(--transition);
     }
 
-    nav a:hover {
-      color: var(--accent);
-    }
-
-    .toggle-btn {
-      cursor: pointer;
-      background: none;
-      border: 1px solid var(--accent);
-      padding: 5px 10px;
-      border-radius: 5px;
-      color: var(--accent);
-      transition: background var(--transition);
-    }
-
-    .toggle-btn:hover {
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
       background: var(--accent);
-      color: #fff;
+      transition: width var(--transition);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 100px 20px 40px;
     }
 
     section {
-      padding: 80px 20px;
-      min-height: 100vh;
+      margin-bottom: 100px;
       animation: fadeInUp 1s ease;
     }
 
     h2 {
-      color: var(--accent);
+      font-size: 2rem;
       margin-bottom: 20px;
+      color: var(--accent);
+      font-weight: 800;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+      padding-bottom: 5px;
     }
 
-    .projects .project {
-      margin-bottom: 30px;
+    p, li {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .project, .edu-card, .achievements ul li {
+      background: var(--card-bg);
       padding: 20px;
-      border-left: 3px solid var(--accent);
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
+      border-radius: 10px;
+      margin-bottom: 20px;
       transition: transform var(--transition);
     }
 
-    .projects .project:hover {
-      transform: translateX(10px);
+    .project:hover, .edu-card:hover, .achievements ul li:hover {
+      transform: translateY(-5px);
     }
 
-    .skills ul, .education ul, .achievements ul, .contact ul {
+    .skills ul, .achievements ul, .contact ul {
       list-style: none;
       padding: 0;
     }
 
-    .skills li, .education li, .achievements li, .contact li {
+    .skills li, .achievements li, .contact li {
       margin-bottom: 10px;
+    }
+
+    .contact a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .contact a:hover {
+      color: var(--accent-hover);
+    }
+
+    .resume-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: var(--accent);
+      color: #000;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background var(--transition);
+    }
+
+    .resume-btn:hover {
+      background: var(--accent-hover);
     }
 
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 30px;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: var(--muted);
     }
 
     @keyframes fadeInUp {
@@ -131,88 +170,79 @@
       <a href="#achievements">Achievements</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button class="toggle-btn" onclick="toggleTheme()">🌙</button>
   </header>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Hi, I’m Kautik Mandve, an aspiring engineering student passionate about robotics, AI, and innovative problem-solving. I thrive on building projects that merge hardware and software to tackle real-world challenges, from AI-powered recycling solutions to precision robotics. My academic journey has been shaped by AP-level mastery and dual-enrollment in advanced mathematics, driving me to constantly push the boundaries of what I can learn and create.</p>
-  </section>
+  <main>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>Hi, I’m <strong>Kautik Mandve</strong>, an aspiring engineering student passionate about robotics, AI, and solving complex problems through technology. I build projects that merge hardware and software to create practical solutions, from AI-powered recycling systems to precision robotics. With strong foundations in advanced mathematics and science, I’m always pushing myself to learn and innovate further.</p>
+    </section>
 
-  <section id="projects" class="projects">
-    <h2>Projects</h2>
-    <div class="project">
-      <h3>EcoSort</h3>
-      <p>An AI-powered trash can that automatically classifies and sorts recyclables from waste. Awarded <strong>$400 at the VHack Hackathon</strong>, where it successfully sorted over 200 items. Currently working on future enhancements to improve accuracy and scalability.</p>
-    </div>
-    <div class="project">
-      <h3>Romi Robot</h3>
-      <p>A precision robot built with encoders and stepper motors to follow pre-coded paths. Earned <strong>2nd place at the Illinois State Science Olympiad</strong> for demonstrating accuracy in motion planning and execution.</p>
-    </div>
-    <div class="project">
-      <h3>FreshTrack</h3>
-      <p>A smart pantry management app that tracks food inventory and suggests recipes based on available ingredients. Contributed to a competition where it scored high for innovation and practical utility.</p>
-    </div>
-  </section>
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="project">
+        <h3>EcoSort</h3>
+        <p>An AI-powered trash can that automatically classifies and sorts recyclables from waste. <strong>Won $400 at VHack Hackathon</strong> and successfully sorted over 200 items. Future enhancements are in development.</p>
+      </div>
+      <div class="project">
+        <h3>Romi Robot</h3>
+        <p>A precision robot built with encoders and stepper motors to follow pre-coded paths. Earned <strong>2nd place at the Illinois State Science Olympiad</strong> for demonstrating accuracy in motion planning and execution.</p>
+      </div>
+      <div class="project">
+        <h3>FreshTrack</h3>
+        <p>A smart pantry management app that tracks food inventory and suggests recipes based on available ingredients. Scored highly for innovation and practicality in competition pitches.</p>
+      </div>
+    </section>
 
-  <section id="skills" class="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li>Python, Java, C++, JavaScript, HTML/CSS</li>
-      <li>Arduino, Raspberry Pi, Circuit Design, Sensor Integration</li>
-      <li>Fusion 360, Onshape, 3D Printing, Prototyping</li>
-      <li>Git/GitHub, VS Code, Block Coding</li>
-    </ul>
-  </section>
+    <section id="skills" class="skills">
+      <h2>Skills</h2>
+      <ul>
+        <li>Python, Java, C++, JavaScript, HTML/CSS</li>
+        <li>Arduino, Raspberry Pi, Circuit Design, Sensor Integration</li>
+        <li>Fusion 360, Onshape, 3D Printing, Prototyping</li>
+        <li>Git/GitHub, VS Code, Block Coding</li>
+      </ul>
+    </section>
 
-  <section id="experience">
-    <h2>Experience</h2>
-    <p>Co-President of Business and VP in Computer Science Club at Vernon Hills High School. Led initiatives, organized events, and guided peers in technical projects and competitions.</p>
-  </section>
+    <section id="experience">
+      <h2>Experience</h2>
+      <p>Co-President of Business and VP in Computer Science Club at Vernon Hills High School. Led initiatives, organized events, and guided peers in technical projects and competitions.</p>
+    </section>
 
-  <section id="education" class="education">
-    <h2>Education</h2>
-    <ul>
-      <li><strong>Vernon Hills High School (Class of 2027)</strong><br>
-        AP Calculus BC, AP Computer Science A, AP Physics I & II, AP Chemistry (all scored 5). Awarded AP Scholar with Distinction. Dual-enrolled in Calculus 3 and Advanced Topics.</li>
-      <li><strong>College of Lake County, Southlake Campus (Summer 2025)</strong><br>
-        Completed Ordinary Differential Equations as a sophomore with a 101% grade.</li>
-    </ul>
-  </section>
+    <section id="education">
+      <h2>Education</h2>
+      <div class="edu-card">
+        <h3>Vernon Hills High School (Class of 2027)</h3>
+        <p>Completed AP Calculus BC, AP Computer Science A, AP Physics I & II, AP Chemistry — all with top scores (5). Awarded <strong>AP Scholar with Distinction</strong>. Currently dual-enrolled in Calculus 3 and Advanced Topics.</p>
+      </div>
+      <div class="edu-card">
+        <h3>College of Lake County – Southlake Campus (Summer 2025)</h3>
+        <p>Completed Ordinary Differential Equations as a sophomore, achieving a <strong>101% final grade</strong>.</p>
+      </div>
+    </section>
 
-  <section id="achievements" class="achievements">
-    <h2>Achievements</h2>
-    <ul>
-      <li>AP Scholar with Distinction</li>
-      <li>2nd Place, Illinois State Science Olympiad</li>
-      <li>VHack Hackathon – $400 Prize (EcoSort)</li>
-    </ul>
-  </section>
+    <section id="achievements" class="achievements">
+      <h2>Achievements</h2>
+      <ul>
+        <li>AP Scholar with Distinction</li>
+        <li>2nd Place – Illinois State Science Olympiad</li>
+        <li>VHack Hackathon – $400 Prize (EcoSort)</li>
+      </ul>
+    </section>
 
-  <section id="contact" class="contact">
-    <h2>Contact</h2>
-    <ul>
-      <li>Email: <a href="mailto:kautikmandve@gmail.com">kautikmandve@gmail.com</a></li>
-      <li>LinkedIn: <a href="https://www.linkedin.com/in/kautik-mandve-8779b62b7/" target="_blank">linkedin.com/in/kautik-mandve</a></li>
-      <li>Phone: +1 (224) 778-9009</li>
-      <li>Resume: <a href="https://docs.google.com/document/d/14ZjuyaOai3UmUq2s4aL_XeG9Uep2i1XSVxAXN8A2QNo/edit?tab=t.0" target="_blank">View Resume</a></li>
-    </ul>
-  </section>
+    <section id="contact" class="contact">
+      <h2>Contact</h2>
+      <ul>
+        <li><i class="fa-solid fa-envelope"></i> <a href="mailto:kautikmandve@gmail.com">kautikmandve@gmail.com</a></li>
+        <li><i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/kautik-mandve-8779b62b7/" target="_blank">LinkedIn</a></li>
+        <li><i class="fa-solid fa-phone"></i> +1 (224) 778-9009</li>
+        <li><i class="fa-solid fa-file"></i> <a class="resume-btn" href="https://docs.google.com/document/d/14ZjuyaOai3UmUq2s4aL_XeG9Uep2i1XSVxAXN8A2QNo/edit?tab=t.0" target="_blank">View Resume</a></li>
+      </ul>
+    </section>
+  </main>
 
   <footer>
     <p>&copy; 2025 Kautik Mandve. Built with ❤️ and hosted on GitHub Pages.</p>
   </footer>
-
-  <script>
-    function toggleTheme() {
-      document.body.classList.toggle('light');
-      const btn = document.querySelector('.toggle-btn');
-      if (document.body.classList.contains('light')) {
-        btn.textContent = '☀️';
-      } else {
-        btn.textContent = '🌙';
-      }
-    }
-  </script>
 </body>
 </html>
